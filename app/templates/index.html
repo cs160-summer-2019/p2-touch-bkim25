@@ -84,7 +84,74 @@
 		</div>
 	</div>
 	<script>
-	  // your solution here
+    //Turning certain gesture features on not enabled by default
+    //var hammertime = new Hammer(myElement, myOptions);
+    //hammertime.get('pinch').set({ enable: true });
+    //hammertime.get('rotate').set({ enable: true });
+    //hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+    //hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    
+    //Get elements by id
+    var rotId = document.getElementById('rotate-box');
+    var pinchId = document.getElementById('pinch-box');
+    var pressId = document.getElementById('press-box');
+    var panId = document.getElementById('pan-box');
+    var tapId = document.getElementById('tap-box');
+    var swipeId = document.getElementById('swipe-box');
+    
+//Rotate
+var mcRot = new Hammer.Manager(rotId);
+var rotate = new Hammer.Rotate();
+mcRot.add(rotate);
+mcRot.on("rotate", function(ev) {
+    $("#rotate-box").css({"backgroundColor":"green"});
+});
+// doRot = new Hammer.Manager(rotId);
+// var getRot = new Hammer.Rotate();
+// doRot.add(getRot);
+// doRot.on("rotate", function(ev) {
+//   $("#rotate-box").css({"transform": "rotate(45deg)"});
+// });
+    
+//Pinch
+var mcPinch = new Hammer.Manager(pinchId);
+var pinch = new Hammer.Pinch();
+mcPinch.add(pinch);
+mcPinch.on("pinch", function(ev) {
+  $("#pinch-box").css({"backgroundColor":"green", "color":"darkgreen"});
+});
+    
+//Press
+var mcPress = new Hammer(pressId);
+mcPress.on("press", function(ev) {
+  $("#press-box").css({"backgroundColor":"green", "color":"darkgreen"});
+});
+    
+//Pan
+var mcPan = new Hammer.Manager(panId);
+    
+var pan = new Hammer.Pan();
+mcPan.add(pan);
+
+mcPan.on("pan", function(ev) {
+  $("#pan-box").css({"align-items": "left"});
+  $("#pan-box").css({"backgroundColor":"red"});
+});
+    
+//Tap
+var mcTap = new Hammer(tapId);
+mcTap.on("tap", function(ev) {
+    $("#tap-box").css({"backgroundColor":"green", "color":"darkgreen"});
+});
+    
+    //Swipe
+var mcSwipe = new Hammer(swipeId);
+var swipe = new Hammer.Swipe();
+mcSwipe.add(swipe);
+mcSwipe.on("swipe", function(ev) {
+    $("#swipe-box").css({"backgroundColor":"green", "color":"darkgreen"});
+});
+    
   </script>
 </body>
 </html>
